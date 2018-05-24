@@ -47,7 +47,7 @@ public class Score : MonoBehaviour {
     /// <returns></returns>
     public ScoreInfo GetScoreInfoRandom()
     {
-        return Scores[Random.Range(0, Scores.Length - 1)];
+        return Scores[Random.Range(0, Scores.Length)];
     }
 
 }
