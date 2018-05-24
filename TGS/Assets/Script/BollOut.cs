@@ -5,27 +5,31 @@ using UnityEngine;
 public class BollOut : MonoBehaviour {
 
     public GameObject bollPre;
-    private float timeOut;
     public float BollOutTime;
+    [SerializeField]
+    private Score score;
+    private Utility.Timer spawnTimer;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start () {
+        spawnTimer = new Utility.Timer(BollOutTime);
+        spawnTimer.OnTimeUpFunc = SpawnBall;
+        spawnTimer.Start();
+    }
 
-        timeOut += Time.deltaTime;
+    public void SpawnBall()
+    {
+        GameObject ball = Instantiate(bollPre, transform.position, Quaternion.identity);
+        ScoreInfo scoreInfo = score.GetScoreInfoRandom();
+        //スコアを設定
+        ball.GetComponent<ScoreBall>().Score = scoreInfo.score;
+        //テクスチャを設定
+        ball.GetComponent<MeshRenderer>().material.mainTexture = scoreInfo.texture;
+        spawnTimer.Start();
+    }
 
-        if (timeOut>=BollOutTime)
-        {
-            Instantiate(bollPre, transform.position, Quaternion.identity);
-
-            timeOut = 0.0f;
-
-            
-        }
-		
+    // Update is called once per frame
+    void Update () {
+        spawnTimer.Update();
 	}
 }
