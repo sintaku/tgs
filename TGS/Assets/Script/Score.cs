@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /*
  * memo
@@ -40,6 +41,27 @@ public class Score : MonoBehaviour {
     [SerializeField, HeaderAttribute("ボールに付けるスコア情報")]
     private ScoreInfo[] Scores;
 
+    public List<Action<int>> onChangeScore;
+
+    private int totalScore;
+    public int TotalScore {
+        set {
+            totalScore = value;
+            foreach(var func in onChangeScore) {
+                func(totalScore);
+            }
+        }
+        get {
+            return totalScore;
+        }
+    }
+
+    private void Awake()
+    {
+        totalScore = 0;
+        onChangeScore = new List<Action<int>>();
+        onChangeScore.Clear();
+    }
 
     /// <summary>
     /// スコアをランダムに取得
@@ -47,7 +69,9 @@ public class Score : MonoBehaviour {
     /// <returns></returns>
     public ScoreInfo GetScoreInfoRandom()
     {
-        return Scores[Random.Range(0, Scores.Length)];
+        return Scores[UnityEngine.Random.Range(0, Scores.Length)];
     }
+
+
 
 }

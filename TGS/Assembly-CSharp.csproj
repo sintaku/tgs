@@ -61,9 +61,16 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Ball\ScoreBall.cs" />
     <Compile Include="Assets\Script\BollOut.cs" />
+    <Compile Include="Assets\Script\Player\Backet.cs" />
+    <Compile Include="Assets\Script\Player\Move.cs" />
+    <Compile Include="Assets\Script\Player\Player.cs" />
+    <Compile Include="Assets\Script\Player\PlayerSetting.cs" />
     <Compile Include="Assets\Script\Score.cs" />
+    <Compile Include="Assets\Script\Stage\BeltConveyor.cs" />
+    <Compile Include="Assets\Script\UI\ScoreText.cs" />
     <Compile Include="Assets\Script\Utility\ImageSlicer.cs" />
     <Compile Include="Assets\Script\Utility\Timer.cs" />
+    <None Include="Assets\mat\BeltConveyor.shader" />
     <Reference Include="Unity.ProBuilder.AddOns.Editor">
       <HintPath>D:/Projects/TGS_Patchi/TGS/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>
